@@ -1,0 +1,121 @@
+/* 🎨 Pastel Minimal Palette */
+:host {
+  --bg-light: #f5f9ff;         /* page background - very light blue */
+  --card-bg: #ffffff;           /* card background */
+  --input-bg: #f0f4f8;          /* input fields */
+  --text-dark: #2e2e3a;         /* headings */
+  --text-light: #7a7a8c;        /* labels & small text */
+  --button-bg: #a8d5ba;         /* soft pastel green button */
+  --button-hover: #85c79f;      /* hover color */
+  --border-light: #dce4eb;      /* input border */
+}
+
+/* Wrapper - center content */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f9ff, #fff5f7, #f9fff5); 
+  /* soft pastel blue, pink, green gradient */
+}
+
+/* Auth Card */
+.auth-container {
+  width: 360px;
+  padding: 35px 30px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.auth-container h2 {
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-container label {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.auth-container input {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background-color: var(--input-bg);
+  outline: none;
+  font-size: 0.95rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.auth-container input:focus {
+  border: 1.5px solid var(--button-bg);
+  box-shadow: 0 0 6px rgba(168, 213, 186, 0.25); /* matches pastel green */
+  background-color: #fff;
+}
+
+.auth-container button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background: var(--button-bg);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-container button:hover {
+  background: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(133, 199, 159, 0.3);
+}
+
+.auth-container p {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.auth-container p a {
+  color: var(--button-bg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.auth-container p a:hover {
+  color: var(--button-hover);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

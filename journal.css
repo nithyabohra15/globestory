@@ -1,0 +1,198 @@
+/* ------------------ Base ------------------ */
+html, body, app-journal, .journal {
+  height: 100%;
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #fdfdfd, #f9f9fb);
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ------------------ Journal Container ------------------ */
+.journal {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ------------------ Form ------------------ */
+form {
+  margin: 2rem auto 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 700px;
+}
+
+form input,
+form textarea,
+form button {
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #f0f0f0;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: 0.2s ease-in-out;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #e8b9c7;
+  box-shadow: 0 0 6px rgba(179,80,106,0.2);
+}
+
+form button {
+  background: #d77a90;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+}
+form button:hover {
+  background: #b3506a;
+  transform: translateY(-2px);
+}
+
+/* ------------------ Entries ------------------ */
+.entries {
+  margin-top: 2.5rem;
+}
+
+.city-title {
+  font-size: 1.7rem;
+  margin-bottom: 1.2rem;
+  color: #d77a90;
+  font-weight: 700;
+}
+
+.city-entries {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* ------------------ Card (Memory) ------------------ */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: left;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 0.8rem;
+}
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.4rem 0;
+}
+.card small {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* ------------------ Delete Button ------------------ */
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: #ff7b7b;
+  color: white;
+  padding: 5px 9px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: all 0.25s ease;
+}
+.delete-btn:hover {
+  background: #d9534f;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ------------------ Slideshow ------------------ */
+.flashback {
+  margin-top: 3rem;
+}
+.slideshow {
+  text-align: center;
+}
+.slide img {
+  max-width: 420px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease;
+}
+.slide img:hover {
+  transform: scale(1.02);
+}
+
+/* ------------------ Replay / Control Buttons ------------------ */
+.replay-section {
+  margin: 2.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.replay-section button {
+  background: linear-gradient(135deg, #f9b27c, #f8a45b);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(249, 168, 91, 0.3);
+}
+
+.replay-section button:hover {
+  background: linear-gradient(135deg, #f8a45b, #e57c26);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 14px rgba(229, 124, 38, 0.35);
+}
+
+.replay-section button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ------------------ Responsive ------------------ */
+@media (max-width: 768px) {
+  form { 
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+  .city-entries { 
+    grid-template-columns: 1fr; 
+  }
+  .slide img { 
+    max-width: 90%; 
+  }
+}

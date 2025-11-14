@@ -1,0 +1,110 @@
+.full-page-card {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: #fffdfc;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.full-page-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.page-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.trip-form {
+  display: grid;
+  gap: 15px;
+}
+
+.add-trip-btn {
+  margin-top: 10px;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.add-trip-btn:hover {
+  background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+  transform: scale(1.05);
+}
+
+.trip-table {
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.trip-table th {
+  background: #ffe0f0;
+  color: #333;
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
+}
+
+.trip-table td {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.animate-card {
+  animation: fadeInUp 0.8s ease both;
+}
+
+.animate-li {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  padding: 6px 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInLi 0.6s forwards;
+}
+
+.animate-li:nth-child(1) { animation-delay: 0.2s; }
+.animate-li:nth-child(2) { animation-delay: 0.4s; }
+.animate-li:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLi {
+  to { opacity: 1; transform: translateY(0); }
+}
+/* === CHART FIX === */
+.chart-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  margin-top: 1rem;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+

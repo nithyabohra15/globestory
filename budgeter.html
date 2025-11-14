@@ -1,0 +1,109 @@
+<div class="budget-wrapper">
+  <h1 class="page-title">My Travel Plan</h1>
+
+  <div class="layout-grid">
+    <!-- Left Side -->
+    <div class="side-panel">
+      <!-- Trip Details -->
+      <div class="section">
+        <h2>Trip Details</h2>
+        <label>Start Date <input type="date" [(ngModel)]="tripDetails.startDate" /></label>
+        <label>End Date <input type="date" [(ngModel)]="tripDetails.endDate" /></label>
+        <p *ngIf="nights > 0">Nights: {{ nights }}</p>
+      </div>
+
+      <!-- Travellers -->
+      <div class="section">
+        <h2>Travellers</h2>
+        <label>Adults <input type="number" [(ngModel)]="travellers.adults" /></label>
+        <label>Children <input type="number" [(ngModel)]="travellers.children" /></label>
+        <label>Pets <input type="number" [(ngModel)]="travellers.pets" /></label>
+      </div>
+
+      <!-- Currency -->
+      <div class="section">
+        <h2>Currency Converter</h2>
+        <label>Base <input [(ngModel)]="currency.base" /></label>
+        <label>Target <input [(ngModel)]="currency.target" /></label>
+        <label>Rate <input type="number" [(ngModel)]="currency.rate" /></label>
+        <label>Amount <input type="number" [(ngModel)]="currency.amount" /></label>
+        <p *ngIf="currency.base && currency.target && currency.amount && currency.rate">
+          {{ currency.amount }} {{ currency.base }} = {{ convertedAmount | number:'1.2-2' }} {{ currency.target }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Center Chart -->
+    <div class="chart-section">
+      <div class="chart-container">
+        <canvas baseChart
+          [data]="doughnutChartData"
+          [type]="doughnutChartType"
+          [options]="doughnutChartOptions">
+        </canvas>
+        <div class="center-label">
+          <p>Total Budget</p>
+          <h2>₹{{ totalBudget | number:'1.0-0' }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="side-panel">
+      <!-- Tasks -->
+      <div class="section">
+        <h2>Tasks To Do</h2>
+        <ul>
+          <li *ngFor="let task of tasks; index as i">
+            {{ task.name }} - <input type="number" [(ngModel)]="task.value" />
+            <button (click)="deleteTask(i)">×</button>
+          </li>
+        </ul>
+        <input [(ngModel)]="newTask" placeholder="New Task" />
+        <button (click)="addTask()">Add Task</button>
+      </div>
+
+      <!-- Budget Overview -->
+      <div class="section">
+        <h2>Budget Overview</h2>
+        <label>Total Budget 
+          <input type="number" [(ngModel)]="totalBudget" (input)="updateChart()" />
+        </label>
+
+        <table class="category-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Budget</th>
+              <th>Actual</th>
+              <th>Diff</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cat of categories; index as i">
+              <td><input [(ngModel)]="cat.name" placeholder="Category" (blur)="updateCategory(cat)" /></td>
+              <td><input type="number" [(ngModel)]="cat.budget" (blur)="updateCategory(cat)" /></td>
+              <td><input type="number" [(ngModel)]="cat.actual" (blur)="updateCategory(cat)" /></td>
+              <td [ngClass]="{'positive': getDifference(cat) > 0, 'negative': getDifference(cat) < 0}">
+                {{ getDifference(cat) }}
+              </td>
+              <td><button (click)="deleteCategory(i)">×</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <input [(ngModel)]="newCategory.name" placeholder="New Category" />
+          <input type="number" [(ngModel)]="newCategory.budget" placeholder="Budget" />
+          <input type="number" [(ngModel)]="newCategory.actual" placeholder="Actual" />
+          <button (click)="addCategory()">+ Add</button>
+        </div>
+
+        <p class="summary">
+          Spent: ₹{{ totalSpent | number:'1.0-0' }} | Remaining: ₹{{ remaining | number:'1.0-0' }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

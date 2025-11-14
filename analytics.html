@@ -1,0 +1,80 @@
+<mat-card class="full-page-card">
+  <h2 class="page-title">Travel Analytics Dashboard</h2>
+
+  <!-- Trip Form -->
+  <form [formGroup]="tripForm" (ngSubmit)="addTrip()" class="trip-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Destination</mat-label>
+      <input matInput formControlName="destination" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Cost (₹)</mat-label>
+      <input matInput type="number" formControlName="cost" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Happiness (1-10)</mat-label>
+      <input matInput type="number" formControlName="happiness" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="type" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="add-trip-btn">
+      ➕ Add Trip
+    </button>
+  </form>
+</mat-card>
+
+<!-- Trips Table -->
+<mat-card class="full-page-card mt-3 animate-card">
+  <h3>All Trips</h3>
+  <table mat-table [dataSource]="trips" class="mat-elevation-z8 full-width trip-table">
+    <ng-container matColumnDef="destination">
+      <th mat-header-cell *matHeaderCellDef>Destination</th>
+      <td mat-cell *matCellDef="let trip">{{ trip.destination }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef>Cost</th>
+      <td mat-cell *matCellDef="let trip">₹{{ trip.cost }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="happiness">
+      <th mat-header-cell *matHeaderCellDef>Happiness</th>
+      <td mat-cell *matCellDef="let trip">{{ trip.happiness }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let trip">{{ trip.type }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['destination','cost','happiness','type']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['destination','cost','happiness','type']"></tr>
+  </table>
+</mat-card>
+
+<!-- Chart (fixed: pure Chart.js) -->
+<mat-card class="full-page-card mt-3 animate-card chart-card">
+  <h3>Happiness Chart</h3>
+  <div class="chart-wrapper">
+    <canvas #chartCanvas width="600" height="300"></canvas>
+  </div>
+</mat-card>
+
+
+<!-- Insights -->
+<mat-card class="full-page-card mt-3 animate-card">
+  <h3>Insights</h3>
+  <ul>
+    <li *ngFor="let insight of insights" class="animate-li">{{ insight }}</li>
+  </ul>
+</mat-card>
+
+
+
+

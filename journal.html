@@ -1,0 +1,64 @@
+<section class="journal">
+  <h2>🗺️ Travel Journal</h2>
+
+  <!-- Journal Entry Form -->
+  <form #entryForm="ngForm"
+        (ngSubmit)="addEntry(city.value, comment.value, imageInput.files?.[0])"
+        class="journal-form">
+    <input type="text" placeholder="City name" #city required>
+    <textarea placeholder="Your favorite memory" #comment></textarea>
+    <input type="file" #imageInput accept="image/*" required>
+    <button type="submit" [disabled]="!entryForm.valid">➕ Add Memory</button>
+  </form>
+
+  <!-- Memories grouped by city -->
+  <div class="entries" *ngFor="let city of getCities()">
+    <h3 class="city-title">🏙️ {{ city }}</h3>
+    <div class="city-entries">
+      <div *ngFor="let entry of getGroupedEntries()[city]" class="card">
+        <img *ngIf="entry.image" [src]="entry.image" alt="{{ entry.city }}">
+        <div class="card-content">
+          <p>{{ entry.comment }}</p>
+          <small>{{ entry.date | date: 'medium' }}</small>
+        </div>
+        <!-- 🗑 Delete Button -->
+        <button class="delete-btn" (click)="deleteEntry(entry.id)">🗑 Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Replay Controls -->
+  <section class="replay-section" *ngIf="entries.length > 0">
+    <button *ngIf="!isPlaying" (click)="startSlideshow()">▶ Replay Memories</button>
+    <button *ngIf="isPlaying" (click)="pauseSlideshow()">⏸ Pause</button>
+    <button (click)="stopSlideshow()">⏹ Stop</button>
+  </section>
+
+  <!-- Flashback Slideshow -->
+  <div class="flashback" *ngIf="showFlashback">
+    <div class="slideshow">
+      <div class="slide" *ngIf="currentEntry">
+        <h3 class="city-title">{{ currentEntry.city }}</h3>
+        <img *ngIf="currentEntry.image" [src]="currentEntry.image" alt="{{ currentEntry.city }}">
+        <p>{{ currentEntry.comment }}</p>
+        <small>{{ currentEntry.date | date: 'medium' }}</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
